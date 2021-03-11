@@ -1,4 +1,4 @@
-package ej5;
+package ej6;
 
 import org.junit.Assert;
 import singletonSession.Session;
@@ -6,9 +6,8 @@ import todoly.CenterSection;
 import todoly.LeftSection;
 import todoly.LoginModal;
 
-public class TestRecycleBin {
+public class TestLogOut {
     LoginModal loginModal = new LoginModal();
-    LeftSection leftSection = new LeftSection();
     CenterSection centerSection = new CenterSection();
 
     String user = "jordi@ugarte.com";
@@ -19,12 +18,9 @@ public class TestRecycleBin {
         Session.getSession().getDriver().get("https://todoist.com/");
         loginModal.loginButton.click();
         loginModal.loginAction(user, pwd);
-        leftSection.recycleBinButton.click();
-        leftSection.recycleBinOptions.click();
-        leftSection.emptyRecycleBinButton.click();
-        String message = centerSection.infoDialogLabel.getText();
+        centerSection.logOutButton.click();
 
         Thread.sleep(2000);
-        Assert.assertEquals("ERROR!! recycle bin wasn't emptied", message, "Recycle Bin has been Emptied.");
+        Assert.assertEquals("ERROR!! Did not logout", "message", "Recycle Bin has been Emptied.");
     }
 }
